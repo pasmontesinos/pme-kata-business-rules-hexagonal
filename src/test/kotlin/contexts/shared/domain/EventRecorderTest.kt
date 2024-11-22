@@ -4,9 +4,9 @@ import mo.staff.contexts.shared.domain.Event
 import mo.staff.contexts.shared.domain.EventRecorder
 import org.junit.jupiter.api.Test
 
-data class DummyEvent(val value: String): Event()
+data class DummyEvent(val value: String) : Event()
 
-class DummyEntity: EventRecorder {
+class DummyEntity : EventRecorder {
     override val events: MutableList<Event> = mutableListOf()
 
     fun doSomething() {
@@ -19,7 +19,9 @@ class EventRecorderTest {
     @Test
     fun `should init with no events`() {
         val entity = DummyEntity()
+
         val events = entity.collectEvents()
+
         assert(events.isEmpty())
     }
 
@@ -27,7 +29,9 @@ class EventRecorderTest {
     fun `should record event`() {
         val entity = DummyEntity()
         entity.doSomething()
+
         val events = entity.collectEvents()
+
         assert(events.size == 1)
         assert(events[0] == DummyEvent("Hello"))
     }
@@ -37,7 +41,9 @@ class EventRecorderTest {
         val entity = DummyEntity()
         entity.doSomething()
         entity.doSomething()
+
         val events = entity.collectEvents()
+
         assert(events.size == 2)
         assert(events[0] == DummyEvent("Hello"))
         assert(events[1] == DummyEvent("Hello"))
@@ -46,11 +52,10 @@ class EventRecorderTest {
     @Test
     fun `should clear events after collecting`() {
         val entity = DummyEntity()
-        entity.doSomething()
+
         entity.doSomething()
         entity.collectEvents()
-        val events = entity.collectEvents()
-        assert(events.isEmpty())
-    }
 
+        assert(entity.collectEvents().isEmpty())
+    }
 }
