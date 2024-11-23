@@ -5,11 +5,11 @@ import contexts.orders.domain.ProductMother
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import java.util.UUID
 import kotlin.test.assertTrue
 import mo.staff.contexts.orders.application.pay.PayOrder
 import mo.staff.contexts.orders.application.pay.PayOrderRequest
 import mo.staff.contexts.orders.domain.OrderDoesNotExist
+import mo.staff.contexts.orders.domain.OrderId
 import mo.staff.contexts.orders.domain.OrderPaid
 import mo.staff.contexts.orders.domain.OrderRepository
 import mo.staff.contexts.shared.domain.EventProducer
@@ -82,6 +82,6 @@ class PayOrderTest {
     }
 
     companion object {
-        private val ORDER_ID = UUID.randomUUID()
+        private val ORDER_ID = OrderId.random()
     }
 }

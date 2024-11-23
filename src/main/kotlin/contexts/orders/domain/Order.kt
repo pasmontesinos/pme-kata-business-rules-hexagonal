@@ -1,10 +1,9 @@
 package mo.staff.contexts.orders.domain
 
-import java.util.UUID
 import mo.staff.contexts.shared.domain.Event
 import mo.staff.contexts.shared.domain.EventRecorder
 
-class Order(val id: UUID, private var status: OrderStatus = OrderStatus.CONFIRMED, val product: Product) : EventRecorder {
+class Order(val id: OrderId, private var status: OrderStatus = OrderStatus.CONFIRMED, val product: Product) : EventRecorder {
     fun pay() {
         status = OrderStatus.PAID
         recordEvent(
