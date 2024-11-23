@@ -12,8 +12,8 @@ data class OrderId(val value: Id) {
             return OrderId(Id.random())
         }
 
-        fun fromString(id: String): OrderId {
-            return OrderId(Id.fromString(id))
+        fun fromString(value: String): OrderId {
+            return OrderId(Id.fromString(value))
         }
     }
 }

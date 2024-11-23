@@ -13,6 +13,7 @@ class PayOrder(private val orderRepository: OrderRepository, private val eventPr
         val order = orderRepository.find(orderId) ?: throw OrderDoesNotExist()
 
         order.pay()
+
         orderRepository.save(order)
         eventProducer.publish(order.collectEvents())
     }

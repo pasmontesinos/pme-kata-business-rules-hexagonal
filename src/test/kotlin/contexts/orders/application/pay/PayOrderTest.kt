@@ -1,11 +1,10 @@
 package contexts.orders.application.pay
 
 import contexts.orders.domain.OrderMother
-import contexts.orders.domain.ProductMother
+import contexts.orders.domain.OrderProductMother
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import kotlin.test.assertTrue
 import mo.staff.contexts.orders.application.pay.PayOrder
 import mo.staff.contexts.orders.application.pay.PayOrderRequest
 import mo.staff.contexts.orders.domain.OrderDoesNotExist
@@ -16,6 +15,7 @@ import mo.staff.contexts.shared.domain.EventProducer
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import kotlin.test.assertTrue
 
 class PayOrderTest {
 
@@ -59,7 +59,8 @@ class PayOrderTest {
 
         val expectedEvent = OrderPaid(
             orderId = ORDER_ID.toString(),
-            physicalProducts = listOf(ProductMother.PHYSICAL_PRODUCT_ID.toString())
+            physicalProducts = listOf(OrderProductMother.PHYSICAL_PRODUCT_ID.toString()),
+            bookProducts = listOf(OrderProductMother.BOOK_PRODUCT_ID.toString()),
         )
 
         verify {
