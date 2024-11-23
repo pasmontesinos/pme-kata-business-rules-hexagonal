@@ -12,6 +12,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    testImplementation("io.mockk:mockk:1.12.5")
+
     implementation("com.diffplug.spotless:spotless-plugin-gradle:6.9.0")
 }
 
