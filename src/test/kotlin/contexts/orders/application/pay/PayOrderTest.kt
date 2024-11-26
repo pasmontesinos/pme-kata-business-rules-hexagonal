@@ -6,7 +6,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import mo.staff.contexts.orders.application.pay.PayOrder
-import mo.staff.contexts.orders.application.pay.PayOrderRequest
+import mo.staff.contexts.orders.application.pay.PayOrderCommand
 import mo.staff.contexts.orders.domain.OrderDoesNotExist
 import mo.staff.contexts.orders.domain.OrderId
 import mo.staff.contexts.orders.domain.OrderPaid
@@ -35,7 +35,7 @@ class PayOrderTest {
         val order = OrderMother.create(ORDER_ID)
         every { orderRepository.find(ORDER_ID) } returns order
 
-        payOrder.execute(PayOrderRequest(ORDER_ID.toString()))
+        payOrder.execute(PayOrderCommand(ORDER_ID.toString()))
 
         assertTrue(order.isPaid())
     }
@@ -45,7 +45,7 @@ class PayOrderTest {
         val order = OrderMother.create(ORDER_ID)
         every { orderRepository.find(ORDER_ID) } returns order
 
-        payOrder.execute(PayOrderRequest(ORDER_ID.toString()))
+        payOrder.execute(PayOrderCommand(ORDER_ID.toString()))
 
         verify { orderRepository.save(order) }
     }
@@ -55,7 +55,7 @@ class PayOrderTest {
         val order = OrderMother.create(ORDER_ID)
         every { orderRepository.find(ORDER_ID) } returns order
 
-        payOrder.execute(PayOrderRequest(ORDER_ID.toString()))
+        payOrder.execute(PayOrderCommand(ORDER_ID.toString()))
 
         val expectedEvent = OrderPaid(
             orderId = ORDER_ID.toString(),
@@ -73,7 +73,7 @@ class PayOrderTest {
         every { orderRepository.find(ORDER_ID) } returns null
 
         assertThrows<OrderDoesNotExist> {
-            payOrder.execute(PayOrderRequest(ORDER_ID.toString()))
+            payOrder.execute(PayOrderCommand(ORDER_ID.toString()))
         }
 
         verify(exactly = 0) {
