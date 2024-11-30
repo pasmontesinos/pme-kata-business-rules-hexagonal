@@ -1,6 +1,5 @@
 package contexts.packingslips.domain
 
-import mo.staff.contexts.orders.domain.OrderId
 import mo.staff.contexts.packingslips.domain.PackingSlip
 import mo.staff.contexts.packingslips.domain.PackingSlipId
 
@@ -15,5 +14,4 @@ class PackingSlipMother {
             return create(id, orderId, PackingSlip.Type.SHIPPING, productIds)
         }
     }
-
 }

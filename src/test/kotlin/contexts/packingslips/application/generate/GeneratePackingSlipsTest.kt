@@ -1,6 +1,5 @@
 package contexts.packingslips.application.generate
 
-import contexts.packingslips.domain.PackingSlipMother
 import io.mockk.mockk
 import io.mockk.verify
 import mo.staff.contexts.packingslips.application.generate.GeneratePackingSlips
@@ -11,8 +10,7 @@ import mo.staff.contexts.shared.domain.Id
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-
-class GeneratePackingSlipsTest  {
+class GeneratePackingSlipsTest {
 
     private lateinit var packingSlipRepository: PackingSlipRepository
     private lateinit var generatePackingSlips: GeneratePackingSlips
@@ -30,11 +28,13 @@ class GeneratePackingSlipsTest  {
         generatePackingSlips.execute(command)
 
         verify {
-            packingSlipRepository.save( match {
-                it.orderId == ORDER_ID &&
-                it.type == PackingSlip.Type.SHIPPING &&
-                it.productIds == PHYSICAL_PRODUCT_IDS
-            })
+            packingSlipRepository.save(
+                match<PackingSlip> {
+                    it.orderId == ORDER_ID &&
+                        it.type == PackingSlip.Type.SHIPPING &&
+                        it.productIds == PHYSICAL_PRODUCT_IDS
+                },
+            )
         }
     }
 
@@ -42,7 +42,7 @@ class GeneratePackingSlipsTest  {
         private val ORDER_ID = Id.random().toString()
         private val PHYSICAL_PRODUCT_IDS = listOf(
             Id.random().toString(),
-            Id.random().toString()
+            Id.random().toString(),
         )
     }
 }
