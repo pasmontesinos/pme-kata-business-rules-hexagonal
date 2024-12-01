@@ -27,12 +27,40 @@ class GeneratePackingSlipsTest {
 
         generatePackingSlips.execute(command)
 
-        verify {
+        verify(exactly = 1) {
             packingSlipRepository.save(
                 match<PackingSlip> {
                     it.orderId == ORDER_ID &&
                         it.type == PackingSlip.Type.SHIPPING &&
                         it.productIds == PHYSICAL_PRODUCT_IDS
+                },
+            )
+        }
+    }
+
+    @Test
+    fun `should generate a duplicate royalty packing slip for book products`() {
+        val command = GeneratePackingSlipsCommand(
+            ORDER_ID,
+            PHYSICAL_PRODUCT_IDS,
+            BOOK_PRODUCT_IDS,
+        )
+
+        generatePackingSlips.execute(command)
+
+        verify(exactly = 1) {
+            packingSlipRepository.save(
+                match<PackingSlip> {
+                    it.orderId == ORDER_ID &&
+                        it.type == PackingSlip.Type.SHIPPING &&
+                        it.productIds == PHYSICAL_PRODUCT_IDS + BOOK_PRODUCT_IDS
+                },
+            )
+            packingSlipRepository.save(
+                match<PackingSlip> {
+                    it.orderId == ORDER_ID &&
+                        it.type == PackingSlip.Type.ROYALTY &&
+                        it.productIds == BOOK_PRODUCT_IDS
                 },
             )
         }
@@ -44,5 +72,6 @@ class GeneratePackingSlipsTest {
             Id.random().toString(),
             Id.random().toString(),
         )
+        private val BOOK_PRODUCT_IDS = listOf(Id.random().toString())
     }
 }

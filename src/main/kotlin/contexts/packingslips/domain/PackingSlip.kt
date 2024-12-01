@@ -4,6 +4,7 @@ class PackingSlip(val packingSlipId: PackingSlipId, val type: Type, val orderId:
 
     enum class Type {
         SHIPPING,
+        ROYALTY,
     }
 
     companion object {

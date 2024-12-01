@@ -6,7 +6,13 @@ import mo.staff.contexts.shared.application.CommandAction
 
 class GeneratePackingSlips(private val packingSlipRepository: PackingSlipRepository) : CommandAction<GeneratePackingSlipsCommand> {
     override fun execute(command: GeneratePackingSlipsCommand) {
-        val packingSlip = PackingSlip.create(PackingSlip.Type.SHIPPING, command.orderId, command.physicalProducts)
+        val shippingProducts = command.physicalProducts + command.bookProducts
+        val packingSlip = PackingSlip.create(PackingSlip.Type.SHIPPING, command.orderId, shippingProducts)
         packingSlipRepository.save(packingSlip)
+
+        if (command.bookProducts.isNotEmpty()) {
+            val royaltyPackingSlip = PackingSlip.create(PackingSlip.Type.ROYALTY, command.orderId, command.bookProducts)
+            packingSlipRepository.save(royaltyPackingSlip)
+        }
     }
 }

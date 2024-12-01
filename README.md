@@ -9,3 +9,5 @@ When you go in to meet the existing order entry folks, you discover that their b
 During first day of meetings, you’ve decided to focus on payments, and in particular on the processing required when a payment was received by the company. You come home, exhausted, with a legal pad full of rule snippets such as:
 
 - If the payment is for a physical product, generate a packing slip for shipping.
+- If the payment is for a book, create a duplicate packing slip for the royalty department.
+
