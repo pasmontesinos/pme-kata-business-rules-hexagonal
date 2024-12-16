@@ -10,4 +10,4 @@ During first day of meetings, you’ve decided to focus on payments, and in part
 
 - If the payment is for a physical product, generate a packing slip for shipping.
 - If the payment is for a book, create a duplicate packing slip for the royalty department.
-
+- If the payment is for a membership, activate that membership.

@@ -10,6 +10,28 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    create("test-acceptance") {
+        compileClasspath += sourceSets.main.get().output
+        runtimeClasspath += sourceSets.main.get().output
+    }
+}
+
+val testAcceptanceImplementation: Configuration by configurations.getting {
+    extendsFrom(configurations.testImplementation.get())
+}
+
+configurations["testAcceptanceRuntimeOnly"].extendsFrom(configurations.testRuntimeOnly.get())
+
+val acceptanceTest = task<Test>("acceptanceTest") {
+    description = "Runs acceptance tests."
+    group = "verification"
+    testClassesDirs = sourceSets["test-acceptance"].output.classesDirs
+    classpath = sourceSets["test-acceptance"].runtimeClasspath
+    useJUnitPlatform()
+    shouldRunAfter("test")
+}
+
 dependencies {
     testImplementation(kotlin("test"))
     testImplementation("io.mockk:mockk:1.13.13")
