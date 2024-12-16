@@ -1,4 +1,4 @@
-package mo.staff.contexts.membership.domain
+package mo.staff.contexts.members.domain
 
 import mo.staff.contexts.shared.domain.Id
 

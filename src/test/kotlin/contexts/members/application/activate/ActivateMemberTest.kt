@@ -1,11 +1,11 @@
-package contexts.membership.application.activate
+package contexts.members.application.activate
 
 import io.mockk.mockk
 import io.mockk.verify
-import mo.staff.contexts.membership.application.activate.ActivateMember
-import mo.staff.contexts.membership.application.activate.ActivateMemberCommand
-import mo.staff.contexts.membership.domain.Member
-import mo.staff.contexts.membership.domain.MemberRepository
+import mo.staff.contexts.members.application.activate.ActivateMember
+import mo.staff.contexts.members.application.activate.ActivateMemberCommand
+import mo.staff.contexts.members.domain.Member
+import mo.staff.contexts.members.domain.MemberRepository
 import mo.staff.contexts.shared.domain.Id
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

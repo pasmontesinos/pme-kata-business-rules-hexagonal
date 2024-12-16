@@ -1,4 +1,4 @@
-package mo.staff.contexts.membership.domain
+package mo.staff.contexts.members.domain
 
 interface MemberRepository {
     fun save(member: Member)

@@ -1,4 +1,4 @@
-package mo.staff.contexts.membership.application.activate
+package mo.staff.contexts.members.application.activate
 
 import mo.staff.contexts.shared.application.Command
 

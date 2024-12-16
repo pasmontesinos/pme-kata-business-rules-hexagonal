@@ -1,7 +1,7 @@
-package mo.staff.contexts.membership.application.activate
+package mo.staff.contexts.members.application.activate
 
-import mo.staff.contexts.membership.domain.Member
-import mo.staff.contexts.membership.domain.MemberRepository
+import mo.staff.contexts.members.domain.Member
+import mo.staff.contexts.members.domain.MemberRepository
 import mo.staff.contexts.shared.application.CommandAction
 
 class ActivateMember(private val memberRepository: MemberRepository) : CommandAction<ActivateMemberCommand> {

@@ -1,4 +1,4 @@
-package mo.staff.contexts.membership.domain
+package mo.staff.contexts.members.domain
 
 class Member(val memberId: MemberId, val userId: String, val level: Level, val status: Status) {
 
