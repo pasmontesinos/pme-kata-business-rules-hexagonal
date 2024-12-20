@@ -1,6 +1,5 @@
-package mo.staff.app
+package mo.staff.app.orders
 
-import mo.staff.app.orders.OrdersContainer
 import mo.staff.contexts.orders.application.pay.PayOrder
 import mo.staff.contexts.orders.application.pay.PayOrderCommand
 
